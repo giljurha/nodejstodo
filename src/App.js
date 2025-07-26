@@ -13,6 +13,7 @@ function App() {
   const [todoValue, setTodoValue] = useState("");
   const getTasks = async () => {
     const response = await api.get("/tasks");
+    setTodoList(response.data);
   };
   const addTask = async () => {
     try{
@@ -47,7 +48,7 @@ function App() {
         </Col>
       </Row>
 
-      <TodoBoard />
+      <TodoBoard todoList={todoList} setTodoList={setTodoList} />
     </Container>
   );
 }
