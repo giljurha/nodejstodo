@@ -4,7 +4,7 @@ const TodoBoard = ({ todoList }) => {
   return (
     <div>
       <h2>Todo List</h2>
-      {todoList.length > 0 ? (
+      {Array.isArray(todoList) && todoList.length > 0 ? (
         todoList.map((item) => (
           <TodoItem key={item.id} item={item} />
         ))
