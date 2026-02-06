@@ -28,6 +28,22 @@ function App() {
     catch (error) {
       console.error("Error adding task:", error);
     }}
+  const deleteTask = async (id) => {
+    try {
+      await api.delete(`/tasks/${id}`);
+      getTasks();
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
+  };
+  const toggleComplete = async (id, isCompleted) => {
+    try {
+      await api.put(`/tasks/${id}`, { isCompleted: !isCompleted });
+      getTasks();
+    } catch (error) {
+      console.error("Error updating task:", error);
+    }
+  };
   useEffect(() => {
     getTasks();
   }, []);
@@ -48,7 +64,7 @@ function App() {
         </Col>
       </Row>
 
-      <TodoBoard todoList={todoList} setTodoList={setTodoList} />
+      <TodoBoard todoList={todoList} deleteTask={deleteTask} toggleComplete={toggleComplete} />
     </Container>
   );
 }
