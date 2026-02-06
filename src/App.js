@@ -18,7 +18,7 @@ function App() {
   const addTask = async () => {
     try{
       const response = await api.post("/tasks", {
-        task: todoValue, isComplete: false
+        task: todoValue, isCompleted: false
       });
       if(response.status === 200) {
         console.log('성공')
